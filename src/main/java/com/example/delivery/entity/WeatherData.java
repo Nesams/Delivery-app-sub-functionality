@@ -1,23 +1,16 @@
 package com.example.delivery.entity;
 
-import jdk.jfr.DataAmount;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
+import lombok.*;
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
 @Builder
 @AllArgsConstructor
 @Table(name = "weather_data")
+@Getter @Setter @NoArgsConstructor
 public class WeatherData {
-    // default constructor
-    public WeatherData() {
-    }
     public WeatherData(String stationName, String wmoCode, String weatherPhenomenon, Double airTemperature, Double windSpeed, Date observationTime) {
         this.stationName = stationName;
         this.wmoCode = wmoCode;
@@ -26,6 +19,7 @@ public class WeatherData {
         this.windSpeed = windSpeed;
         this.observationTime = observationTime;
     }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -48,27 +42,4 @@ public class WeatherData {
     @Column(name = "observation_time")
     private Date observationTime;
 
-    public String getStationName() {
-        return stationName;
-    }
-
-    public String getWmoCode() {
-        return wmoCode;
-    }
-
-    public Double getAirTemperature() {
-        return airTemperature;
-    }
-
-    public Double getWindSpeed() {
-        return windSpeed;
-    }
-
-    public String getWeatherPhenomenon() {
-        return weatherPhenomenon;
-    }
-
-    public Date getObservationTime() {
-        return observationTime;
-    }
 }

@@ -1,7 +1,6 @@
 package com.example.delivery;
 
 import com.example.delivery.controller.DeliveryFeeController;
-import com.example.delivery.repository.WeatherDataRepository;
 import com.example.delivery.service.DeliveryFeeService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +12,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class DeliveryApplicationTests {
 	@Autowired
 	private DeliveryFeeService deliveryFeeService;
-
-	@Autowired
-	private WeatherDataRepository weatherDataRepository;
-
 	@Autowired
 	private DeliveryFeeController deliveryFeeController;
 
@@ -34,35 +29,32 @@ class DeliveryApplicationTests {
 	}
 
 	@Test
-	void testCurrentData() throws Exception {
+	void testDeliveryFeeCalculationWithCurrentData() throws Exception {
 		String stationName = "Tallinn";
 		String vehicleType = "bike";
-		Thread.sleep(2000);
 		Double result = deliveryFeeController.calculateDeliveryFee(stationName, vehicleType).getBody();
 		assertEquals(3.0, result);
 	}
 
 	@Test
-	void testGetAirTemperatureWithValidValue() throws InterruptedException {
+	void testGetAirTemperatureWithValidValue() {
 		String stationName = "Tallinn";
-		Thread.sleep(2000);
 		Double result = deliveryFeeService.getAirTemperature(stationName);
 		assertNotNull(result);
 	}
 
 	@Test
-	void testGetWindSpeedWithValidValue() throws InterruptedException {
+	void testGetWindSpeedWithValidValue() {
 		String stationName = "Tallinn";
-		Thread.sleep(2000);
 		Double result = deliveryFeeService.getWindSpeed(stationName);
 		assertNotNull(result);
 	}
 
 	@Test
-	void testGetWeatherPhenomenonWithValidValue() throws InterruptedException {
+	void testGetWeatherPhenomenonWithValidValue() {
 		String stationName = "Tallinn";
-		Thread.sleep(2000);
 		String result = deliveryFeeService.getWeatherPhenomenon(stationName);
+
 		assertNotNull(result);
 	}
 
